@@ -28,13 +28,11 @@ public class AccountDao implements Dao<Account> {
         insertInDb(account3);
         insertInDb(account4);
         insertInDb(account5);
-        System.out.println(accounts);
     }
 
     public void insertInDb(Account account) {
         if (!accounts.contains(account)) {
-            long l1 = generatedIdHoles();          // todo
-            System.out.println(l1 + " need test");// need test
+            long l1 = generatedIdHoles();
             account.setId(l1);
             accounts.add(account);
         }
@@ -56,7 +54,6 @@ public class AccountDao implements Dao<Account> {
         if (accounts.contains(account)) {
             Account c = accounts.stream().filter(k -> k.equals(account)).findFirst().get();
             c.setBalance( account.getBalance());
-
             return c;
         }
         return null;
