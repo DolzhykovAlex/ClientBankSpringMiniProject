@@ -1,3 +1,40 @@
+spring:
+  profiles:
+    active: local
+
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:dbtest
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+    embedded-database-connection: h2
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
 server:
   port: 9000
-
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:postgresql://dpg-cqn4f908fa8c73alnncg-a.frankfurt-postgres.render.com/globaldb_pv3p
+    username: globaldb_pv3p_user
+    password: xFMpNlGqHyLUKYzb6DmQkVhatY8UBTOh
+  jpa:
+    generate-ddl: true
+    show-sql: true
+server:
+  port: 9000

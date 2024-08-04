@@ -10,28 +10,47 @@
 
 **3.http://localhost:9000/app/customers/add**
 
--додавання користвача тіла запита для прикладу,  типу POST
+-додавання користвача тіло запита для прикладу,  типу POST
 {
-"name":"Test1",
-"email":"Test@email",
-"age": 1000
+"name": "First",
+"email": "mail@number1",
+"age": 10,
+"accounts":[],
+"works":[{
+"id": 6,
+"name": "Work 1",
+"address": "Kiev"
+}]
 }
 
 **4.http://localhost:9000/app/customers/up/user**
 - оновлення даних коритстувача за ім'ям та поштою метод PUT,
-приклад запитту {
-  "name":"Test1",
-  "email":"Test@email",
-  "age":0
+приклад запитту
+- {
+  "name": "First",
+  "email": "mail@number1",
+  "age": 10,
+  "accounts":[],
+  "works":[{
+    "id": 6,
+    "name": "Work 1",
+    "address": "Kiev"
+           }]
   }
 
 
 **5.http://localhost:9000/app/customers/up/admin?id=4**
 - оновлення даних коритстувача за id метод PUT,
 приклад запитту {
-  "name":"Test1",
-  "email":"Test@email",
-  "age":0
+  "name": "First",
+  "email": "mail@number1",
+  "age": 10,
+  "accounts":[],
+  "works":[{
+  "id": 6,
+  "name": "Work 1",
+  "address": "Kiev"
+  }]
   }
 - 
 **6.http://localhost:9000/app/customers/del/entity**
@@ -40,20 +59,21 @@
 **7.http://localhost:9000/app/customers/del/personal?id=3**
 -видалення користувача за id метод DELETE
 
-**8.http://localhost:9000/app/customers/account**
--додавання рахунку користувачу за id, метод PUT,
-приклад {
-    "customer" : {
-        "id": 2,
-        "name": "Jon",
-        "email": "B@111.com",
-        "age": 22
-    },
-    "currency": "USD"
+**8.http://localhost:9000/aсс/add**
+-створення нового рахунку, метод POST,
+приклад 
+{
+  "customer" : {
+    id": 1,
+    "name": "First",
+    "email": "mail@number1",
+    "age": 10
+               },
+  "currency": "EUR"
 }
 
 **9.http://localhost:9000/acc/all**
--перелік рахунків, поки немає бази данних зберігається окремо
+- перелік наявних аккаунтів
 
 **10.http://localhost:9000/acc/rich**
 -додавання на рахунок метод  PUT,
@@ -83,5 +103,34 @@
     ],
     "sum": 100.003
 }
+
+**13.http://localhost:9000/emp/all**
+
+- перелік наявних місць роботи(Employee)
+
+**14.http://localhost:9000/emp/add**
+
+-створення нового Employee  , метод POST,
+приклад
+{
+"name":"Work 5",
+"address":"Kiev"
+}
+
+**15.http://localhost:9000/emp/del**
+
+-видалення Employee  , метод DELETE,
+приклад
+
+!!! поки можна видалити лише тільки місце у якоЇ
+нема працівників
+{
+"id":10,
+"name":"Work 5",
+"address":"Kiev"
+}
+
+**16.http://localhost:9000/emp/up**
+оновлюэ данні Employee
 
 
