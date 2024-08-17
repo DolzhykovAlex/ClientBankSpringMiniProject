@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class CustomerMarked {
     String marked;
-    CustomerLite customerLite;
+    CustomerResponse customerResponse;
 }

@@ -2,8 +2,6 @@ spring:
   profiles:
     active: local
 
-
-
 ---
 spring:
   config:
@@ -38,3 +36,6 @@ spring:
     show-sql: true
 server:
   port: 9000
+---
+
+

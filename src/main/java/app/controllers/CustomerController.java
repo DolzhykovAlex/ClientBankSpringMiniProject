@@ -1,13 +1,17 @@
 package app.controllers;
 
-import app.entities.customers.api.DTO.CustomerLite;
-import app.entities.customers.api.DTO.CustomerMarked;
+
+import app.entities.customers.api.DTO.*;
 import app.entities.customers.db.Customer;
 import app.entities.customers.service.CustomerService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -16,11 +20,27 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final CustomerDtoRequestMapper requestDtoMapper;
+    private final CustomerDtoResponseMapper customerDtoResponseMapper;
 
 
-    @GetMapping("")
-    public List<CustomerLite> findAl() {
-        return customerService.findAll();
+
+    @GetMapping()
+    public List<CustomerResponse> getItems2(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return   customerService.findAll(pageable).stream()
+                .map(customerDtoResponseMapper::convertToDto)
+                .toList();
+    }
+
+    @GetMapping("all")
+    public List<CustomerResponse> findAll() {
+        return customerService.findAll().stream()
+                .map(customerDtoResponseMapper::convertToDto)
+                .collect(Collectors.toList());
     }
 
 
@@ -30,38 +50,42 @@ public class CustomerController {
     }
 
     @PostMapping("add")
-    public void create(@RequestBody Customer customer) {
-        System.out.println(customer+" WOOOOOOOOO");
-        customerService.create(customer);
+    public CustomerMarked create(@Valid @RequestBody CustomerRequest customerRequest) {
+        Customer customer = requestDtoMapper.convertToEntity(customerRequest);
+        return checkEntity(customerService.create(customer));
     }
 
     @DeleteMapping("del/entity")
-    public void delete(@RequestBody Customer customer) {
-        customerService.delete(customer);
+    public boolean delete(@Valid @RequestBody CustomerRequest customerRequest) {
+        Customer customer = requestDtoMapper.convertToEntity(customerRequest);
+        return customerService.delete(customer);
     }
 
     @DeleteMapping("del/personal")
     public boolean delete(@RequestParam("id") Long id) {
-      return   customerService.deleteById(id);
+        return customerService.deleteById(id);
     }
 
 
-
     @PutMapping("up/user")
-    public CustomerMarked update(@RequestBody Customer customer) {
+    public CustomerMarked update(@Valid @RequestBody CustomerRequest customerRequest) {
+        Customer customer = requestDtoMapper.convertToEntity(customerRequest);
         return checkEntity(customerService.update(customer));
     }
 
     @PutMapping("up/admin")
-    public CustomerMarked updateByAdmin(@RequestParam("id") long id, @RequestBody Customer customer) {
+    public CustomerMarked updateByAdmin(@RequestParam("id") long id, @Valid @RequestBody CustomerRequest customerRequest) {
+        Customer customer = requestDtoMapper.convertToEntity(customerRequest);
         return checkEntity(customerService.updateByAdmin(id, customer));
     }
 
 
     public CustomerMarked checkEntity(Customer customer) {
         if (customer == null) {
-            return new CustomerMarked("Customer not found ", new CustomerLite(new Customer("--", "--", 0)));
+            return new CustomerMarked("Customer not found or already exist", new CustomerResponse());
         }
-        return new CustomerMarked("Work done", new CustomerLite(customer));
+        System.out.println(customer + " customer" + customer.getId() + "customer id");
+        CustomerResponse customerResponse = customerDtoResponseMapper.convertToDto(customer);
+        return new CustomerMarked("Work done", customerResponse);
     }
 }

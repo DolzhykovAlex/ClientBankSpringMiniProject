@@ -8,5 +8,4 @@ import java.util.List;
 public class NumberAndSum {
     private List<String> numbers;
     private String sum;
-
 }

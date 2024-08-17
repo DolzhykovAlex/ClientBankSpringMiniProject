@@ -1,34 +1,46 @@
 package app.entities.employee.service;
 
-import app.entities.account.db.Account;
-import app.entities.employee.api.DTO.EmployeeLite;
+
 import app.entities.employee.db.Employee;
-import app.entities.employee.db.EmployeeDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private final EmployeeDAO employeeDAO;
+
+    private final EmployeeRepository em;
 
     @Override
     public Employee save(Employee employee) {
-        return employeeDAO.save(employee);
+        if (getIdFromEntity(employee) == 0) {
+            em.save(employee);
+            return employee;
+        }
+        return null;
+    }
+
+    public long getIdFromEntity(Employee employee) {
+        Optional<Employee> employee1 = em.findAll().stream().filter(c -> c.equals(employee)).findFirst();
+        return employee1.map(Employee::getId).orElse(0L);
     }
 
     @Override
-    public boolean delete(Employee obj) {
-        return employeeDAO.delete(obj);
+    public boolean delete(Employee employee) {
+        if (em.findAll().contains(employee)) {
+            em.delete(employee);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void deleteAll(List<Employee> entities) {
-        employeeDAO.deleteAll(entities);
-
+        em.deleteAll(entities);
     }
 
     @Override
@@ -37,8 +49,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeLite> findAll() {
-        return employeeDAO.findAll().stream().map(EmployeeLite::new).toList();
+    public List<Employee> findAll() {
+        return em.findAll();
     }
 
     @Override
@@ -46,13 +58,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return false;
     }
 
-    @Override
-    public Account getOne(long id) {
-        return null;
-    }
 
     @Override
     public Employee update(Employee employee) {
-      return   employeeDAO.updateEmployee(employee);
+        if (getIdFromEntity(employee) != 0)
+            return em.save(employee);
+        return null;
     }
 }

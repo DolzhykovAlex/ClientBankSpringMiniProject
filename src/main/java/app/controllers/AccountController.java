@@ -1,7 +1,11 @@
 package app.controllers;
 
 
-import app.entities.account.api.DTO.AccountLite;
+
+
+import app.entities.account.api.DTO.AccountDtoRequestMapper;
+import app.entities.account.api.DTO.AccountDtoResponseMapper;
+import app.entities.account.api.DTO.AccountResponse;
 import app.entities.account.api.DTO.NumberAndSum;
 import app.entities.account.db.Account;
 import app.entities.account.service.AccountService;
@@ -9,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -17,10 +22,11 @@ import java.util.List;
 public class AccountController {
 
     private final AccountService accountService;
+    private final AccountDtoRequestMapper accountDtoRequestMapper;
+    private final AccountDtoResponseMapper accountDtoResponseMapper;
 
     @PutMapping("rich")
     public boolean updateAccount(@RequestBody NumberAndSum numberAndSum) {
-        System.out.println(numberAndSum.getSum() + " cumma");
         return accountService.updateUp(numberAndSum);
     }
 
@@ -35,8 +41,10 @@ public class AccountController {
     }
 
     @GetMapping("all")
-    public List<AccountLite> getAllAccounts() {
-        return accountService.getAllInformation();
+    public List<AccountResponse> getAllAccounts() {
+        return accountService.getAllInformation().stream()
+                .map(accountDtoResponseMapper::convertToDto)
+                .collect(Collectors.toList());
     }
 
     @PostMapping("add")

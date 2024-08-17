@@ -7,15 +7,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
+
 @Entity
 @NoArgsConstructor
 public class Customer extends AbstractClass {
@@ -29,21 +27,22 @@ public class Customer extends AbstractClass {
     private String email;
 
     @Column(nullable = false)
-    private int age;
+    private String phone;
 
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.REMOVE)
-    private List<Account> accounts;
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private int age;
 
     @ManyToMany()
     private List<Employee> works;
 
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.REMOVE)
+    private List<Account> accounts;
 
-    public Customer(String name, String email, int age) {
-        this.name = name;
-        this.email = email;
-        this.age = age;
-        this.accounts = new ArrayList<>();
-    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -51,6 +50,23 @@ public class Customer extends AbstractClass {
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
         return Objects.equals(name, customer.name) && Objects.equals(email, customer.email);
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id='" + this.getId() + '\''+
+                "created Date='" + this.getCreatedDate() + '\''+
+                "Last Modified Date='" + this.getLastModifiedDate() + '\''+
+
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", works=" + works +
+                ", accounts=" + accounts +
+                '}';
     }
 
     @Override

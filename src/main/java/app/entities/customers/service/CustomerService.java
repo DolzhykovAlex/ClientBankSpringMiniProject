@@ -1,25 +1,28 @@
 package app.entities.customers.service;
 
-import app.entities.customers.api.DTO.CustomerLite;
 import app.entities.customers.db.Customer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public interface CustomerService {
-    public Customer getOneInformation(long id);
+    Customer getOneInformation(long id);
 
-    public List<CustomerLite> findAll();
+    List<Customer> findAll();
 
-    public void create(Customer customer);
+    Page<Customer> findAll(Pageable pageable);
 
-    public void delete(Customer customer);
+    Customer create(Customer customer);
 
-    public Customer update(Customer customer);
+    boolean delete(Customer customer);
 
-    public Customer updateByAdmin(long id, Customer customer);
+    Customer update(Customer customer);
+
+    Customer updateByAdmin(long id, Customer customer);
 
 
-    public boolean deleteById(long id);
+    boolean deleteById(long id);
 }
