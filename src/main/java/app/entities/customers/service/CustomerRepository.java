@@ -4,6 +4,8 @@ import app.entities.customers.db.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
@@ -16,7 +18,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Customer findByNameAndEmail(String name, String email);
 
 
-
+    Optional<Customer> findByNameIgnoreCase(String name);
 
 
 }

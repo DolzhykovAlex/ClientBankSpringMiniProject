@@ -1,20 +1,30 @@
+Для піддключення введіть логін пароль
+
+- Login   <>                      Password
+- bbb      <>                      password1
+- ccc      <>                      password2
+- ddd      <>                      password3
+- aaa      <>                      password4
 
 ### Программа без ФРОНТУ. Запити робляться через Postman
-### Перелік 
+
+### Перелік
 
 **1.http://localhost:9000/app/customers/all**
+
 - перелік наявних користувачів
 
 **2.http://localhost:9000/app/customers?page=1&size=3**
+
 - перелік наявних користувачів з пагінацією
 
-
 **3.http://localhost:9000/app/customers/one?id=1**
-- запит  користувача с заданним id
+
+- запит користувача с заданним id
 
 **4.http://localhost:9000/app/customers/add**
 
--додавання користвача тіло запита для прикладу,  типу POST
+-додавання користвача тіло запита для прикладу, типу POST
 {
 "name":"DDDD",
 "email":"last@example.ecom",
@@ -24,8 +34,9 @@
 }
 
 **5.http://localhost:9000/app/customers/up/user**
+
 - оновлення даних коритстувача за ім'ям та поштою метод PUT,
-приклад запитту
+  приклад запитту
   {   "name":"BBB",
   "email":"BBB@AA.EE",
   "age":22,
@@ -33,17 +44,19 @@
   "phone":"+380501234567"
   }
 
-
 **6.http://localhost:9000/app/customers/up/admin?id=4**
+
 - оновлення даних коритстувача за id метод PUT,
-приклад запитту {
+  приклад запитту {
   "name":"BB33",
   "email":"BBB@AA.EE",
   "age":22,
   "password":"password2",
   "phone":"+380501234567"}
-- 
+-
+
 **7.http://localhost:9000/app/customers/del/entity**
+
 - видалення користувача за ім'ям та поштою метод DELETE
 
 **8.http://localhost:9000/app/customers/del/personal?id=3**
@@ -60,13 +73,15 @@
         "age": 30
     },
     "currency": "GBP"
+
 }
 
 **10.http://localhost:9000/acc/all**
+
 - перелік наявних аккаунтів
 
 **11.http://localhost:9000/acc/rich**
--додавання на рахунок метод  PUT,
+-додавання на рахунок метод PUT,
 приклад:{
 "numbers":[
 "fbb509bc-1608-4806-98ba-d53469463ad4"
@@ -75,7 +90,7 @@
 }
 
 **12.http://localhost:9000/acc/poor**
--віднімання з рахунка метод  PUT,
+-віднімання з рахунка метод PUT,
 приклад: генеруеться кожноно разу нове значення номера рахунку {
 "numbers":[
 "fbb509bc-1608-4806-98ba-d53469463ad4"
@@ -84,13 +99,13 @@
 }
 
 **13.http://localhost:9000/acc/transfer**
--переказ з рахунка на рахунок метод  PUT,
+-переказ з рахунка на рахунок метод PUT,
 приклад: генеруеться кожноно разу нове значення номера рахунку{
 "numbers":[
-         "fbb509bc-1608-4806-98ba-d53469463ad4",
-         "3dc027c5-a282-4ca0-bd85-e09cf978ac66"
-    ],
-    "sum": 10.003
+"fbb509bc-1608-4806-98ba-d53469463ad4",
+"3dc027c5-a282-4ca0-bd85-e09cf978ac66"
+],
+"sum": 10.003
 }
 
 **14.http://localhost:9000/emp/all**
@@ -99,7 +114,7 @@
 
 **15.http://localhost:9000/emp/add**
 
--створення нового Employee  , метод POST,
+-створення нового Employee , метод POST,
 приклад
 {
 "name":"Work 11",
@@ -108,7 +123,7 @@
 
 **16.http://localhost:9000/emp/del**
 
--видалення Employee  , метод DELETE,
+-видалення Employee , метод DELETE,
 приклад
 
 !!! поки можна видалити лише тільки місце у якоЇ

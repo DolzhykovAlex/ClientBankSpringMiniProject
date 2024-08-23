@@ -5,18 +5,18 @@ insert into employee (name,address,created_date,last_modified_date)  VALUES ('Wo
 insert into employee (name,address,created_date,last_modified_date)  VALUES ('Work 3', 'Kiev','2023-08-13 19:15:39.248352','2023-08-13 17:15:39.248352');
 insert into employee (name,address,created_date,last_modified_date)  VALUES ('Work 4', 'Kiev','2024-08-13 18:15:39.248352','2024-08-13 17:15:39.248352');
 
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('BBB', 'BBB@AA.EE',22,'+380501234567','password2','2024-07-11 17:15:39.248352','2024-07-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('CCC', 'CCC@AA.EE',30,'+380501234568','password3','2024-06-13 17:15:39.248352','2024-06-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('DDD', 'DDD@AA.EE',40,'+380501234569','password4','2024-05-10 17:15:39.248352','2024-06-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('AAA', 'AAA@AA.EE',30,'+380501234560','password1','2024-04-19 17:15:39.248352','2024-05-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('BB3', 'BBB@AA.EE',22,'+380501234567','password2','2024-07-11 17:15:39.248352','2024-07-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('CCC3', 'CCC@AA.EE',30,'+380501234568','password3','2024-06-13 17:15:39.248352','2024-06-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('DDD2', 'DDD@AA.EE',40,'+380501234569','password4','2024-05-10 17:15:39.248352','2024-06-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('AA3A', 'AAA@AA.EE',30,'+380501234560','password1','2024-04-19 17:15:39.248352','2024-05-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('BBfB', 'BBB@AA.EE',22,'+380501234567','password2','2024-07-11 17:15:39.248352','2024-07-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('CCcC', 'CCC@AA.EE',30,'+380501234568','password3','2024-06-13 17:15:39.248352','2024-06-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('DD3D', 'DDD@AA.EE',40,'+380501234569','password4','2024-05-10 17:15:39.248352','2024-06-13 17:15:39.248352');
-insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('kkAAA', 'AAA@AA.EE',30,'+380501234560','password1','2024-04-19 17:15:39.248352','2024-05-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('BBB', 'BBB@AA.EE',22,'+380501234567','{bcrypt}$2a$10$me0dDPI25FWZNPayU3ryCO48Nam8G/h0mre7AVS0He1vTBq4LsCka','2024-07-11 17:15:39.248352','2024-07-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('CCC', 'CCC@AA.EE',30,'+380501234568','{bcrypt}$2a$10$GF2j9diHz2X0R7/NegW3rOE7V1XLqXJse57cR7K2J6AnaXkY/1Xse','2024-06-13 17:15:39.248352','2024-06-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('DDD', 'DDD@AA.EE',40,'+380501234569','{bcrypt}$2a$10$KiX/AwcYpfv6Uft28J8qveTTaEBL4u68Q4y6T1LLqI29r5tdG8OyO','2024-05-10 17:15:39.248352','2024-06-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('AAA', 'AAA@AA.EE',30,'+380501234560','{bcrypt}$2a$10$AH.tNiXtJ4Br2zEOTqUvQOUCfXKT2XSPsA2QKhPXtQ0h4JG.HcSny','2024-04-19 17:15:39.248352','2024-05-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('BB3', 'BBB@AA.EE',22,'+380501234567','{bcrypt}$2a$10$4r8PNMmrHwsDTHyiK.of2OaOjIivfHYQeWobskdVugf6XFaoUIxdi','2024-07-11 17:15:39.248352','2024-07-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('CCC3', 'CCC@AA.EE',30,'+380501234568','{bcrypt}$2a$10$me0dDPI25FWZNPayU3ryCO48Nam8G/h0mre7AVS0He1vTBq4LsCka','2024-06-13 17:15:39.248352','2024-06-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('DDD2', 'DDD@AA.EE',40,'+380501234569','{bcrypt}$2a$10$GF2j9diHz2X0R7/NegW3rOE7V1XLqXJse57cR7K2J6AnaXkY/1Xse','2024-05-10 17:15:39.248352','2024-06-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('AA3A', 'AAA@AA.EE',30,'+380501234560','{bcrypt}$2a$10$KiX/AwcYpfv6Uft28J8qveTTaEBL4u68Q4y6T1LLqI29r5tdG8OyO','2024-04-19 17:15:39.248352','2024-05-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('BBfB', 'BBB@AA.EE',22,'+380501234567','{bcrypt}$2a$10$AH.tNiXtJ4Br2zEOTqUvQOUCfXKT2XSPsA2QKhPXtQ0h4JG.HcSny','2024-07-11 17:15:39.248352','2024-07-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('CCcC', 'CCC@AA.EE',30,'+380501234568','{bcrypt}$2a$10$4r8PNMmrHwsDTHyiK.of2OaOjIivfHYQeWobskdVugf6XFaoUIxdi','2024-06-13 17:15:39.248352','2024-06-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('DD3D', 'DDD@AA.EE',40,'+380501234569','{bcrypt}$2a$10$me0dDPI25FWZNPayU3ryCO48Nam8G/h0mre7AVS0He1vTBq4LsCka','2024-05-10 17:15:39.248352','2024-06-13 17:15:39.248352');
+insert into customer (name,email,age,phone,password, created_date,last_modified_date)  VALUES ('kkAAA', 'AAA@AA.EE',30,'+380501234560','{bcrypt}$2a$10$GF2j9diHz2X0R7/NegW3rOE7V1XLqXJse57cR7K2J6AnaXkY/1Xse','2024-04-19 17:15:39.248352','2024-05-13 17:15:39.248352');
 
 
 

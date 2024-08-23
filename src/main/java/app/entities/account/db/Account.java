@@ -42,16 +42,6 @@ public class Account  {
 
 
     @Override
-    public String toString() {
-        return "Account{" +
-                "balance=" + balance +
-                ", currency=" + currency +
-                ", number='" + number + '\'' +
-                ", id=" + getId() +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -68,4 +58,6 @@ public class Account  {
     public Account() {
         this.number = UUID.randomUUID().toString();
     }
+
+
 }

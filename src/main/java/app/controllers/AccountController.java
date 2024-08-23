@@ -3,12 +3,10 @@ package app.controllers;
 
 
 
-import app.entities.account.api.DTO.AccountDtoRequestMapper;
-import app.entities.account.api.DTO.AccountDtoResponseMapper;
-import app.entities.account.api.DTO.AccountResponse;
-import app.entities.account.api.DTO.NumberAndSum;
+import app.entities.account.api.DTO.*;
 import app.entities.account.db.Account;
 import app.entities.account.service.AccountService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +15,7 @@ import java.util.stream.Collectors;
 
 
 @RestController
-@RequestMapping("acc")
+@RequestMapping("/acc")
 @RequiredArgsConstructor
 public class AccountController {
 
@@ -25,7 +23,7 @@ public class AccountController {
     private final AccountDtoRequestMapper accountDtoRequestMapper;
     private final AccountDtoResponseMapper accountDtoResponseMapper;
 
-    @PutMapping("rich")
+    @PutMapping("/rich")
     public boolean updateAccount(@RequestBody NumberAndSum numberAndSum) {
         return accountService.updateUp(numberAndSum);
     }
@@ -48,12 +46,14 @@ public class AccountController {
     }
 
     @PostMapping("add")
-    public boolean create(@RequestBody Account account) {
+    public boolean create(@Valid @RequestBody AccountRequest accountRequest) {
+        Account account= accountDtoRequestMapper.convertToEntity(accountRequest);
         return accountService.create(account);
     }
 
     @DeleteMapping("delete/entity")
-    public boolean deleteAccount(@RequestBody Account account) {
+    public boolean deleteAccount(@Valid @RequestBody AccountRequest accountRequest) {
+        Account account= accountDtoRequestMapper.convertToEntity(accountRequest);
         return accountService.delete(account);
     }
 }

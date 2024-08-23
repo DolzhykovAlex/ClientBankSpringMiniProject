@@ -5,6 +5,7 @@ import app.entities.customers.db.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-
+    private final PasswordEncoder passwordEncoder;
     private final CustomerRepository cr;
 
     @Override
@@ -34,9 +35,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
-
     public Customer create(Customer customer) {
         if (getIdFromEntity(customer) == 0) {
+            customer.setPassword(passwordEncoder.encode(customer.getPassword()));
             cr.save(customer);
             return cr.findByNameAndEmail(customer.getName(), customer.getEmail());
         }
@@ -59,14 +60,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer update(Customer customer) {
-        customer.setId(getIdFromEntity(customer));
-        System.out.println(customer.getId()+"4234234234234234234234234234------------------------");
-        if (customer.getId() != 0) {
-            cr.save(customer);
-            System.out.println("customer: " + customer+"---------------------");
+        long id = getIdFromEntity(customer);
+        Customer c = getOneInformation(id);
 
-            return cr.getFirstById(customer.getId());
-        }
+       if (c != null) {
+            customer.setPassword(c.getPassword());
+            customer.setId(c.getId());
+            if (customer.getId() != 0) {
+                cr.save(customer);
+                return cr.getFirstById(customer.getId());
+           }
+       }
         return null;
     }
 
@@ -74,6 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer updateByAdmin(long id, Customer customer) {
         customer.setId(id);
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         return cr.save(customer);
     }
 

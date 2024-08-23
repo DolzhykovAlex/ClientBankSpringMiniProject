@@ -84,7 +84,6 @@ public class CustomerController {
         if (customer == null) {
             return new CustomerMarked("Customer not found or already exist", new CustomerResponse());
         }
-        System.out.println(customer + " customer" + customer.getId() + "customer id");
         CustomerResponse customerResponse = customerDtoResponseMapper.convertToDto(customer);
         return new CustomerMarked("Work done", customerResponse);
     }
