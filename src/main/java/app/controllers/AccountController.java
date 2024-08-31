@@ -32,7 +32,7 @@ public class AccountController {
 
     @PutMapping("poor")
     public boolean decreaseAccount(@Valid @RequestBody NumberAndSum numberAndSum) {
-        log.info("updateAccount minus money ");
+        log.info("updateAccount minus money  ");
         return accountService.updateDown(numberAndSum);
     }
 
