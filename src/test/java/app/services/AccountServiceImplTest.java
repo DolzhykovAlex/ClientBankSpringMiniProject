@@ -5,6 +5,8 @@ import app.entities.account.api.DTO.NumberAndSum;
 import app.entities.account.db.Account;
 import app.entities.account.service.AccountRepository;
 import app.entities.account.service.AccountServiceImpl;
+import app.exeptions.customExeption.AccountNotFoundException;
+import app.exeptions.customExeption.NotEnoughMoneyException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import java.util.List;
 
@@ -23,6 +26,8 @@ public class AccountServiceImplTest {
     @Mock
     private AccountRepository accountRepository;
 
+    @Mock
+    private SimpMessagingTemplate messagingTemplate;
 
     @Test
     void getAllInformationTest() {
@@ -35,7 +40,6 @@ public class AccountServiceImplTest {
 
     @Test
     void updateUpTestPositive() {
-
         Account account1 = new Account();
         NumberAndSum numberAndSum = new NumberAndSum();
         numberAndSum.setNumbers(List.of(account1.getNumber()));
@@ -76,7 +80,7 @@ public class AccountServiceImplTest {
         numberAndSum.setNumbers(List.of(account1.getNumber()));
         numberAndSum.setSum("100");
         Mockito.when(accountRepository.getFirstByNumber(account1.getNumber())).thenReturn(account1);
-        Assertions.assertFalse(accountServiceImpl.updateDown(numberAndSum));
+        Assertions.assertThrows(NotEnoughMoneyException.class, () -> accountServiceImpl.updateDown(numberAndSum));
     }
 
     @Test
@@ -104,7 +108,8 @@ public class AccountServiceImplTest {
         NumberAndSum numberAndSum = new NumberAndSum();
         numberAndSum.setNumbers(List.of(account1.getNumber(), account2.getNumber()));
         numberAndSum.setSum("100");
-        Assertions.assertFalse(accountServiceImpl.transfer(numberAndSum));
+        Assertions.assertThrows(AccountNotFoundException.class, () -> accountServiceImpl.transfer(numberAndSum));
+
     }
 
 
@@ -118,10 +123,10 @@ public class AccountServiceImplTest {
 
     @Test
     public void createTestNegative() {
-
         Account account1 = new Account();
         Mockito.when(accountRepository.getFirstByNumber(account1.getNumber())).thenReturn(account1);
-        Assertions.assertFalse(accountServiceImpl.create(account1));
+       Assertions.assertThrows(AccountNotFoundException.class, () -> accountServiceImpl.create(account1));
+
     }
 
 
@@ -135,10 +140,10 @@ public class AccountServiceImplTest {
 
     @Test
     public void deleteTestNegative() {
-
         Account account1 = new Account();
         Mockito.when(accountRepository.getFirstByNumber(account1.getNumber())).thenReturn(null);
-        Assertions.assertFalse(accountServiceImpl.delete(account1));
+        Assertions.assertThrows(AccountNotFoundException.class, () -> accountServiceImpl.delete(account1));
+
     }
 
 }

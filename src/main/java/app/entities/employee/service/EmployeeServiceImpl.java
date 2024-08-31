@@ -2,6 +2,7 @@ package app.entities.employee.service;
 
 
 import app.entities.employee.db.Employee;
+import app.exeptions.customExeption.EmployeeNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,11 +18,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee save(Employee employee) {
-        if (getIdFromEntity(employee) == 0) {
-            em.save(employee);
-            return employee;
-        }
-        return null;
+        if (getIdFromEntity(employee) != 0)
+            throw new EmployeeNotFoundException("EmployeeService Method save:this Employee Exist, cant create the same  ");
+        em.save(employee);
+        return employee;
     }
 
     public long getIdFromEntity(Employee employee) {
@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             em.delete(employee);
             return true;
         }
-        return false;
+        throw new EmployeeNotFoundException("EmployeeService Method delete");
     }
 
     @Override
@@ -45,7 +45,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void saveAll(List<Employee> entities) {
-
     }
 
     @Override
@@ -61,8 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee update(Employee employee) {
-        if (getIdFromEntity(employee) != 0)
-            return em.save(employee);
-        return null;
+        if (getIdFromEntity(employee) == 0) throw new EmployeeNotFoundException("EmployeeService Method update");
+        return em.save(employee);
     }
 }

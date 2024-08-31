@@ -23,7 +23,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-public class CustomerServiceImplTest {
+public class  CustomerServiceImplTest {
 
     @InjectMocks
     private CustomerServiceImpl customerServiceImpl;

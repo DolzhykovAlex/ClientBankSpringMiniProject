@@ -13,7 +13,6 @@ public class AccountRequest {
     private long id;
     private  String number;           // number of account
     private  Currency currency;
-
     @Min(0)
     private double balance;
 

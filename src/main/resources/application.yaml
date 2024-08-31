@@ -28,9 +28,9 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: jdbc:postgresql://dpg-cqn4f908fa8c73alnncg-a.frankfurt-postgres.render.com/globaldb_pv3p
-    username: globaldb_pv3p_user
-    password: xFMpNlGqHyLUKYzb6DmQkVhatY8UBTOh
+    url: jdbc:postgresql://dpg-cr9hsqbv2p9s73b8bfkg-a.frankfurt-postgres.render.com/dlobaldb
+    username: dlobaldb_user
+    password: Qo7ue1ZlecvL1YjYANMYDyOQgqXNIag8
   jpa:
     generate-ddl: true
     show-sql: true

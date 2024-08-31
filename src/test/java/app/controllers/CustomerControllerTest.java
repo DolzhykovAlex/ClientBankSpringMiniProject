@@ -116,9 +116,9 @@ public class CustomerControllerTest {
         when(customerService.getOneInformation(customerId)).thenReturn(null);
         mockMvc.perform(get("/app/customers/one")
                         .param("id", customerId.toString()))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.marked").value("Customer not found or already exist"))
-                .andExpect(jsonPath("$.customerResponse").exists());
+                .andExpect(status().isNotFound());
+
+
     }
 
     @Test
@@ -166,9 +166,8 @@ public class CustomerControllerTest {
         mockMvc.perform(post("/app/customers/add")
                         .contentType("application/json")
                         .content(customerRequestJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.marked").value("Customer not found or already exist"))
-                .andExpect(jsonPath("$.customerResponse").exists());
+                .andExpect(status().isNotFound());
+
     }
 
     @Test

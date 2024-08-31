@@ -1,6 +1,7 @@
 package app.security;
 
 
+
 import app.entities.customers.db.Customer;
 import app.entities.customers.service.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class UserDetailsServiceDb implements UserDetailsService {
 
-    private final DbUserRepository dbUserRepository;
+  //  private final DbUserRepository dbUserRepository;
     private final CustomerRepository customerRepository;
 
     @Bean
@@ -26,6 +27,8 @@ public class UserDetailsServiceDb implements UserDetailsService {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
+//                                .requestMatchers("/ac/1").permitAll()
+                            //  .anyRequest().permitAll()
                                 .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

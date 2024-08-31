@@ -4,6 +4,7 @@ package app.services;
 import app.entities.employee.db.Employee;
 import app.entities.employee.service.EmployeeRepository;
 import app.entities.employee.service.EmployeeServiceImpl;
+import app.exeptions.customExeption.EmployeeNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -72,7 +73,6 @@ public class EmployeeServiceImplTest {
     @Test
     public void update() {
         Employee employee = new Employee();
-        employee.setId(1L);
-        Assertions.assertNull( employeeServiceImpl.update(employee));
+        Assertions.assertThrows( EmployeeNotFoundException.class, () -> employeeServiceImpl.update(employee));
     }
 }
